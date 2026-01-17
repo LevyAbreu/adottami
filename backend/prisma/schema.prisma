@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  name      String
+  avatar    String?
+  pets      Pet[]
+  posts     Post[]
+  products  Product[]
+  adoptions Adoption[]
+  createdAt DateTime  @default(now())
+}
+
+model Pet {
+  id          String    @id @default(uuid())
+  name        String
+  species     String    // Ex: Cão, Gato
+  breed       String?
+  age         Int?
+  ownerId     String
+  owner       User      @relation(fields: [ownerId], references: [id])
+  isForAdoption Boolean @default(false)
+  adoption    Adoption?
+  createdAt   DateTime  @default(now())
+}
+
+model Post {
+  id        String    @id @default(uuid())
+  content   String
+  image     String?
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id])
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  sellerId    String
+  seller      User     @relation(fields: [sellerId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model Adoption {
+  id        String   @id @default(uuid())
+  petId     String   @unique
+  pet       Pet      @relation(fields: [petId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  status    String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdAt DateTime @default(now())
+}

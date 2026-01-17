@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #1A1A1A;
+  --color-brand-pink: #FF4D97;
+  --color-brand-bg: #F3F4F6;
+  
+  --font-sans: 'Sora', 'Inter', system-ui, sans-serif;
+  --radius-post: 2rem;
+  --radius-image: 1.5rem;
+}
+
+@layer components {
+  .layout-header {
+    @apply h-16 bg-brand-dark text-white flex items-center justify-between px-8 fixed w-full z-20;
+    display: flex;
+    align-items: center;
+  }
+
+  .z-50 {
+    z-index: 50;
+  }
+
+  .sidebar-container {
+    @apply w-64 bg-brand-dark h-[calc(100vh-64px)] text-gray-400 p-4 fixed left-0 overflow-y-auto border-r border-gray-800;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all hover:bg-white/5 hover:text-white;
+  }
+
+  .nav-item-active {
+    @apply bg-white/10 text-white font-bold;
+  }
+
+  .feed-container {
+    @apply flex-1 ml-64 p-8 flex flex-col items-center bg-brand-bg min-h-screen;
+  }
+
+  .post-card {
+    @apply bg-white rounded-post shadow-sm w-full max-w-125 overflow-hidden mb-8 border border-gray-100;
+  }
+
+  .post-image {
+    @apply w-full aspect-square object-cover rounded-image;
+  }
+
+  .search-input {
+    @apply w-full bg-white text-gray-800 rounded-full py-2 px-10 focus:outline-none text-sm border-none shadow-sm;
+  }
+
+  .header-icon-btn {
+    @apply p-2 rounded-full hover:bg-white/10 text-white transition-all relative cursor-pointer;
+  }
+
+  .notification-badge {
+    @apply absolute top-1 right-1 w-2.5 h-2.5 bg-brand-pink rounded-full border-2 border-brand-dark;
+  }
+}
