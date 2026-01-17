@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { 
   Search, Heart, LayoutGrid, Dog, Info, 
-  LifeBuoy, MessageSquare, User, Settings, LogOut, ChevronDown 
+  LifeBuoy, MessageSquare, User, Settings, LogOut, ChevronDown, ShoppingBag 
 } from 'lucide-react';
+
+// Importação do Ícone
 import logoIcon from './assets/icon-32.png';
 
 // Importação das Páginas
@@ -16,6 +18,7 @@ import { Chat } from './pages/Chat';
 import { Profile } from './pages/Profile';
 import { SettingsPage } from './pages/Settings';
 import { Login } from './pages/Login';
+import { Marketplace } from './pages/Marketplace';
 
 function AppContent() {
   const location = useLocation();
@@ -37,11 +40,13 @@ function AppContent() {
     <div className="font-sans min-h-screen bg-brand-bg">
       {/* HEADER FIXO */}
       <header className="layout-header">
+        {/* LOGO COM ÍCONE */}
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity min-w-fit">
           <img src={logoIcon} alt="Adottami Logo" className="w-8 h-8 object-contain" />
           <h1 className="text-2xl font-bold italic text-brand-pink tracking-tight">Adottami</h1>
         </Link>
         
+        {/* BUSCA */}
         <div className="relative w-full max-w-md mx-4">
           <input 
             type="text" 
@@ -51,11 +56,12 @@ function AppContent() {
           <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
         </div>
 
+        {/* AÇÕES DA DIREITA */}
         <div className="flex items-center gap-4 min-w-fit">
           {/* BOTÃO DE CHAT (DM) */}
-          <Link to="/chat" className="header-icon-btn">
+          <Link to="/chat" className="header-icon-btn relative">
             <MessageSquare size={22} />
-            <span className="notification-badge"></span>
+            <span className="absolute top-0 right-0 w-2 h-2 bg-brand-pink rounded-full border-2 border-brand-dark"></span>
           </Link>
 
           {/* DROPDOWN DE PERFIL COM HOVER */}
@@ -106,6 +112,12 @@ function AppContent() {
             <Link to="/adotar">
               <MenuItem icon={<Heart size={20} />} label="Adotar" active={location.pathname === '/adotar'} />
             </Link>
+            
+            {/* LINK MARKETPLACE ADICIONADO */}
+            <Link to="/marketplace">
+              <MenuItem icon={<ShoppingBag size={20} />} label="Marketplace" active={location.pathname === '/marketplace'} />
+            </Link>
+
             <Link to="/meus-pets">
               <MenuItem icon={<Dog size={20} />} label="Meus pets" active={location.pathname === '/meus-pets'} />
             </Link>
@@ -121,18 +133,18 @@ function AppContent() {
           </nav>
         </aside>
 
-        {/* CONTEÚDO PRINCIPAL (SCROLLÁVEL) */}
+        {/* CONTEÚDO PRINCIPAL */}
         <main className="feed-container">
           <Routes>
             <Route path="/" element={<Feed />} />
             <Route path="/adotar" element={<Adoption />} />
+            <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/meus-pets" element={<MyPets />} />
             <Route path="/sobre" element={<About />} />
             <Route path="/suporte" element={<Support />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/perfil" element={<Profile />} />
             <Route path="/configuracoes" element={<SettingsPage />} />
-            {/* Redireciona qualquer rota não encontrada para o Feed */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
@@ -160,7 +172,6 @@ function DropdownItem({ to, icon, label }: { to: string, icon: any, label: strin
   );
 }
 
-// Export Principal com o Router
 export default function App() {
   return (
     <BrowserRouter>
