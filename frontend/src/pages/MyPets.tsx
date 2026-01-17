@@ -1,4 +1,4 @@
-import { Plus, Pencil, Trash2, Heart } from 'lucide-react';
+import { Plus, Pencil, Trash2 } from 'lucide-react';
 
 const MY_PETS = [
   { id: 1, name: "Thor", breed: "Golden Retriever", status: "Em casa", img: "https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=200" },

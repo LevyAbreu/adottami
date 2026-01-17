@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { 
-  Search, Heart, LayoutGrid, PlusSquare, Dog, Info, 
+  Search, Heart, LayoutGrid, Dog, Info, 
   LifeBuoy, MessageSquare, User, Settings, LogOut, ChevronDown 
 } from 'lucide-react';
 import logoIcon from './assets/icon-32.png';
