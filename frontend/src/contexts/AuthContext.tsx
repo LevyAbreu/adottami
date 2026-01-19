@@ -18,7 +18,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User>({
     name: "User",
     handle: "User.example",
-    avatar: "https://img.icons8.com/?size=100&id=12437&format=png&color=FF4D97",
+    avatar: "https://img.icons8.com/?size=100&id=15265&format=png&color=FFFFFF",
     bio: "Adicionar Bio"
   });
 
